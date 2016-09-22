@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 关于
 description: MedCare Station
 keywords: Pei Yulin
 comments: true
