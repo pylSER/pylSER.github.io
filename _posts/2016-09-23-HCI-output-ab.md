@@ -32,6 +32,7 @@ keywords: HCI EyeTracking
 , (ii) Dynamic ROI 主要是人脸和移动物体的区域
 
 >TECHNICAL BACKGROUND
+
 1. 使用 pupil-center-corneal-reflection 系统来跟踪眼动，当然，分析区域在两个ROI里。先来看眼动的2个动作: 聚焦和扫视
 - 怎么判断动作是聚焦还是扫视
 判断某时刻是否聚焦有很多算法，实验中采用如果视线在某点停留250ms，并且 (their distance with respect to the centroid corresponds to 0.75 degree of viewing angle 不太懂。。。)
@@ -52,10 +53,12 @@ keywords: HCI EyeTracking
 ![figure1](/images/posts/hci/hci1.png)
 
 >METHODOLOGY
+
 1. 实验发现，听力障碍人士不但对快速字幕有理解问题，还对一些场景激烈的镜头如: 暴乱，战争，竞技比赛等也出现了 Attention overload。
 由此，我们想到，字幕速度应该和运动图像的 ( 激烈程度？ 不知道怎么翻译。。。 ) 有关。
 
 >CONCLUSION
+
 1. 字幕阅读
 - 事实上听力障碍人士在阅读字幕和观看内容上有着不同的观看策略，貌似并没有一个统一的规律，而且时间的分配也会随着画面的 ( 激烈程度？) 和字幕的速度而改变。
 - 我们猜测人脸和移动物体是最吸引人注意的，事实上也确实是这样的。而且听力残障人士会比听力正常人士看脸更多。但如果这个人之前出现过，或此时是这人的特写镜头，这种关注会下降。
