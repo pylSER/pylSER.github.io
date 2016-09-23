@@ -34,7 +34,7 @@ keywords: HCI EyeTracking
 >TECHNICAL BACKGROUND
 
 1. 使用 pupil-center-corneal-reflection 系统来跟踪眼动，当然，分析区域在两个ROI里。先来看眼动的2个动作: 聚焦和扫视
-- 怎么判断动作是聚焦还是扫视
+* 怎么判断动作是聚焦还是扫视
 判断某时刻是否聚焦有很多算法，实验中采用如果视线在某点停留250ms，并且 (their distance with respect to the centroid corresponds to 0.75 degree of viewing angle 不太懂。。。)
 就判断为一个聚焦。
 - 获得关注字幕与视频内容在整个观看过程中的比例
