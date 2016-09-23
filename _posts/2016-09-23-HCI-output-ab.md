@@ -1,3 +1,13 @@
+---
+layout: post
+title: 字幕组论文总结1
+categories: HCI
+description: 字幕组论文总结
+keywords: HCI EyeTracking
+---
+
+
+
 #总结
 ## 「Improving Video Captioning for Deaf and Hearing-impaired People Based on Eye Movement and Attention Overload」
 >INTRODUCTION
