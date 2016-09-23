@@ -10,11 +10,11 @@ keywords: HCI EyeTracking
 
 #总结
 
-
 ##「Improving Video Captioning for Deaf and Hearing-impaired People Based on Eye Movement and Attention Overload」
 
 
 >INTRODUCTION
+
 1. 目前聋人和听力有障碍的人只能依赖字幕获取电视中的声音信息，
 而大部分字幕都是预先生成好的，对于直播等不能预先生成字幕的情况而言，我们需要实时字幕。
 但是，目前，实时字幕存在着许多弊端，比如: a.生成质量不高 b.转录的延时
