@@ -48,11 +48,11 @@ public void print() {
 
 我也想到能否使用 `System.out.print` 的返回值来做文章，但奈何并不记得它返回什么，首先让我们复习一下 `PrintStream` 的 `print`、`println` 和 `printf` 方法的区别：
 
-| 方法    | 功能               | 返回值      |
-|---------|--------------------|-------------|
+| 方法      | 功能        | 返回值         |
+| ------- | --------- | ----------- |
 | print   | 打印一个值或者对象 | void        |
-| println | 打印并换行         | void        |
-| printf  | 格式化打印         | PrintStream |
+| println | 打印并换行     | void        |
+| printf  | 格式化打印     | PrintStream |
 
 所以适用的是 `printf`，它的返回值是 `PrintStream` 类型的 `System.out`，判它是否为空即可。
 
@@ -127,9 +127,7 @@ public void print() {
 
 同样看得我一愣一愣的还有 [caiwei](https://www.zhihu.com/people/caiwei710) 同学的答案，他和朋友们发现题目里少写了个大括号（真的），于是我们看到他的朋友老方的解决方案：
 
-![add-brace](/images/posts/java/add-brace.jpg)
-
-真是防不胜防啊~不过我喜欢！:+1:
+![add-brace](/images/posts/java/add-brace.jpg)真是防不胜防啊~不过我喜欢！:+1:
 
 ## 参考
 
