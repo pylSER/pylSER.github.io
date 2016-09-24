@@ -32,6 +32,7 @@ __CCC__ 允许在会议期间通过认证方实时修改错误字幕。认证方
 ![figure1](/images/posts/hci/caption1.png)
 
 听力障碍人士此时无法判断是字幕出错还是自己的理解有问题。
+
 2. 认证方发现该字幕有错误，点击该处字幕，此时字幕变成一个可编辑的文本框。如图: 
 
 ![figure1](/images/posts/hci/caption2.png)
