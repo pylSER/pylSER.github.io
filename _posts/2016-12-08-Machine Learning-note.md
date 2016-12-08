@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Machine Learning (2)
+title: Machine Learning(2)
 categories: Machine Learning
 description: Machine Learning
 keywords: Machine Learning
