@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux 基础 (2)
+title: Linux 系统基础 (2)
 categories: LinuxBasic
 description: LinuxBasic
 keywords: LinuxBasic
@@ -8,7 +8,7 @@ keywords: LinuxBasic
 
 
 
-# Linux 基础 (2)
+# Linux 系统基础 (2)
 
 #### 为 GRUB 设置密码
 
