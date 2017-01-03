@@ -29,7 +29,7 @@ keywords: LinuxBasic
 
 
 
-![hardlink](/Users/peiyulin/Documents/pylSER.github.io/images/posts/linux/hardlink.png)
+![hardlink](/images/posts/linux/hardlink.png)
 
 
 
