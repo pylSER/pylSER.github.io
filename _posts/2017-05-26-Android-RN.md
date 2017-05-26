@@ -294,7 +294,6 @@ JavaScriptExecutor jsExecutor,
     rootView.onAttachedToReactInstance();
     Systrace.endSection(TRACE_TAG_REACT_JAVA_BRIDGE);
   }
-
 ```
 
 具体解释上面的代码：
@@ -307,9 +306,41 @@ JavaScriptExecutor jsExecutor,
 
 事实上，React Native 是一个普通的安卓程序加上事件响应，在整个应用中，主要有2个线程：UIThread，JSThread。UIThread 循环向 JSThread请求数据，一旦数据有变，数据通过 bridge 转发到 UIThread，触发 UI 渲染，更新界面。
 
-关于 BRIDGE：通信模型
+#### 1.3关于 BRIDGE：通信模型
+
+先来说React Native App 是怎么响应事件的：
+
+这里的事件包括：用户的输入，触摸屏幕，时间事件，网路请求响应等
+
+1. 这些事件会预先在 native 中注册，收到事件后，native会响应，当然同时能够获得关于事件的一些数据
+2. 序列化这些数据，把数据推到 Bridge
+3. js 处理这些数据，生成一组指令(刚刚说到 js 才是知道该渲染什么，该干什么的一端)
+4. js 将指令交给 Bridge
+5. Bridge 序列化这些指令和数据
+6. native 亲自来取指令，解析执行渲染
 
 ![rn-arch2](/images/posts/android/rn-arch2.png)
+
+React Native 在通信时，有3个特点：
+
+- Asynchronous
+- Batched
+- Exchange Serializable Messages（经调查是 json）
+
+1. Bridge 实现了java 代码和 js 代码相互通信的功能。React Native 使用了单向调用的方式：Native 线程定时向 JS线程拉取数据。这样做的原因是：当 app 启动，发生点击或者拖动手势，时间事件,网络事件发生时，是先由 native 代码进行响应(JS 并没有喧宾夺主), 也往往是此时，界面才需要重新渲染。这和上面所讲的 “JS 充当服务端，native 充当客户端”的想法不谋而合。
+
+2. JS 调用 java
+
+   但在现实中会存在很多在 js 中会预先调用 native 方法的情况，比如存放本地数据(AsyncStorge), 设置 Toast 等。当 JS 调用方法时，React Native 团队面临3种选择：
+
+   1. 同步调用，在 native 线程执行时，JS 线程等待
+   2. 异步调用，JS 线程通知 native 线程工作，不等待
+
+   很显然，第一种效率过低，不过，RN 开发团队又想出了第三种更有效率的调用方法: Asynchronous Batch native calls. 开发团队希望 native 代码不要来一个 JS 调用就执行一个，这样效率不高，他们决定批处理这些调用。为了实现这个想法，RN 开发团队使用了 MessageQueue，也就是说，js 生成的指令都被Bridge 存入一个消息队列(包括调用方法，模块ID和参数)，native 层一旦满足条件，就会取消息队列中的指令执行，实现批处理。
+
+3. JAVA 调用 JS
+
+   ​
 
 
 
@@ -322,8 +353,6 @@ JavaScriptExecutor jsExecutor,
 1. 重新编译 jsx ，生成新的 js
 2. 替换需要更新的 js
 3. 解释执行 
-
-
 
 
 
