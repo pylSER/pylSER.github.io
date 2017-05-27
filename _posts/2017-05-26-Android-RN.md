@@ -329,7 +329,27 @@ React Native 在通信时，有3个特点：
 
 1. Bridge 实现了java 代码和 js 代码相互通信的功能。React Native 使用了单向调用的方式：Native 线程定时向 JS线程拉取数据。这样做的原因是：当 app 启动，发生点击或者拖动手势，时间事件,网络事件发生时，是先由 native 代码进行响应(JS 并没有喧宾夺主), 也往往是此时，界面才需要重新渲染。这和上面所讲的 “JS 充当服务端，native 充当客户端”的想法不谋而合。
 
-2. JS 调用 java
+2. JAVA 调用 JS
+
+   当 Native 层发现需要更新 UI 时，会调用 JS 方法，调用的过程主要依靠 Bridge。
+
+   React Native 使用两份配置表说明了 Java 可以调用 JS 的哪些方法(JavaScriptModuleRegistry )，JS 可以调用 Java 的哪些方法(NativeModuleRegistry)
+
+   下图描述了具体流程：
+
+   ![java2js](/images/posts/android/java2js.jpeg) 
+
+   每一步的详细解释：
+
+   1. CatalystanceImpl 类 被 builder 创建，由他找到对应的 JS module
+   2. 获得对应 module 的 moduleID，methodID，params
+   3. 委托 Bridge 调用
+   4. Bridge 调用 C++ 层（C++ 连接了 JAVA 和 JS，应该是和C++能够操纵指针有关）
+   5. C++ 层 找到 JS 层的方法，让其执行
+
+   ​
+
+3. JS 调用 java
 
    但在现实中会存在很多在 js 中会预先调用 native 方法的情况，比如存放本地数据(AsyncStorge), 设置 Toast 等。当 JS 调用方法时，React Native 团队面临3种选择：
 
@@ -338,13 +358,7 @@ React Native 在通信时，有3个特点：
 
    很显然，第一种效率过低，不过，RN 开发团队又想出了第三种更有效率的调用方法: Asynchronous Batch native calls. 开发团队希望 native 代码不要来一个 JS 调用就执行一个，这样效率不高，他们决定批处理这些调用。为了实现这个想法，RN 开发团队使用了 MessageQueue，也就是说，js 生成的指令都被Bridge 存入一个消息队列(包括调用方法，模块ID和参数)，native 层一旦满足条件，就会取消息队列中的指令执行，实现批处理。
 
-3. JAVA 调用 JS
-
    ​
-
-
-
-
 
 ### 2. DEBUG
 
@@ -353,6 +367,26 @@ React Native 在通信时，有3个特点：
 1. 重新编译 jsx ，生成新的 js
 2. 替换需要更新的 js
 3. 解释执行 
+
+#### 2.1 从 DEBUG 机理可以预见的
+
+React Native 可能会改变目前 app 的更新方式，可以这样想：既然 JS 层在整个的 app 中扮演服务端的位置，那么为什么不能将 JS 层放到远端或者云上呢？
+
+其实目前 debug 时已经利用了该思想，具体如下：
+
+![rn-debug](/Users/peiyulin/Desktop/rn-debug.png)
+
+可以在 chrome 中调试 RN！
+
+从上面的架构我们可以预见2种更新方式：
+
+1. 热更新源 JS 代码：当 app 需要更新时，不要在去下载 apk 重新安装，而是从 js 服务器拉取新的编译好的 js 代码(类似于 git)，重新启动应用即可. (谁让 js 是解释执行的呢) 。注意，此时 Bridge 还是在 app 中。
+2. 远端提供控制流 ( Streaming )：刚才说到 js 端返回一系列的指令给 native 层，native 就可以知道干什么了。为什么 native 端不直接从远端得到指令呢？Bridge 和 JS 层 都在远端执行，在手机上，native 层只要发送事件请求就好。剩下的交给远端服务器来处理，处理好了之后给 native 层发送这个控制流即可。由于 JS 层根本都不在手机上，这样的 app 根本就不用更新，因为每次的处理响应控制流都是最新的。
+
+
+
+
+
 
 
 
