@@ -374,7 +374,7 @@ React Native 可能会改变目前 app 的更新方式，可以这样想：既�
 
 其实目前 debug 时已经利用了该思想，具体如下：
 
-![rn-debug](/Users/peiyulin/Desktop/rn-debug.png)
+![rn-debug](/images/posts/android/rn-debug.png)
 
 可以在 chrome 中调试 RN！
 
