@@ -1,0 +1,60 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 80px;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+
+
+.btn-file {  /*  上传按钮*/
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+
+#banner {
+    background-size:547px 548px;
+    background-repeat:no-repeat;
+    position: relative;
+    width:547px;
+    height: 548px;
+}
+#avatar {
+    background-size:360px 360px;
+    border-radius: 360px;
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    /* z-index: 1; */
+    left: 109px;
+    top: 94px;
+}
+
+
+.result{
+    font-size: 15px;
+}
