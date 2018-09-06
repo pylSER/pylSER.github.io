@@ -20,7 +20,7 @@ Approaches:
 
 
 
-###Data Integrity
+### Data Integrity
 
 prevent being modified and replaced or check if data is modified or replaced.
 
@@ -61,7 +61,7 @@ $x ⊗n y =: (x × y ) mod n = 1.$
 The integer y is called a multiplicative inverse of x, usually denoted x−1 (it is
 unique if it exists).
 
-==模的倒数不一定存在==
+== 模的倒数不一定存在 ==
 
 当 a和n互质时，a有且唯一有一个multiplicative inverse
 
