@@ -10,6 +10,12 @@ keywords: Recognition System
 
 intensity 亮度
 
+image intensity表示单通道图像像素的强度（值的大小）。
+
+在灰度图像中，它是图像的灰度。
+
+在RGB颜色空间中，可以理解把它为是R通道的像素灰度值，G通道的像素灰度值，或是B通道的像素灰度值，也就是RGB中含三个image intensity。
+
 ## Image model
 
 $f(x,y)=i(x,y)*r(x,y)$
@@ -37,4 +43,6 @@ f(x,y) -- 看见的图像
 Intensity quantization
 
 A\B=inv(A)*B
+
+
 
